@@ -24,8 +24,6 @@ let tweets2 = []
 
 app.post('/sign-up', (req, res) => {
     const { username, avatar } = req.body;
-    console.log(avatar)
-    //if (users.has(username))
     users.set(username, avatar)
     res.send(`OK`)
 })
@@ -33,7 +31,7 @@ app.post('/sign-up', (req, res) => {
 app.post('/tweets', (req, res) => {
     const { username, tweet } = req.body;
     const avatar = users.get(username)
-    tweets.push({username, avatar, tweet})
+    tweets.push({ username, avatar, tweet })
     res.send(`OK`)
 })
 
@@ -41,12 +39,9 @@ app.get('/tweets', (req, res) => {
     let returnedTweets = []
     const size = tweets.length - 1
     const start = size > 10 ? size - 10 : 0
-    console.log(`start ${start} size ${size}`)
     for (let i = start; i < size; i++) {
-        console.log(i)
         returnedTweets.push(tweets[i])
     }
-    console.log('cheguei aqui')
     res.send(returnedTweets)
 })
 
